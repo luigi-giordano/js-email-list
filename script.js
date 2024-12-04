@@ -9,17 +9,17 @@ for(let i = 0; i < 10; i++){
   axios.get(endPoint)
   // Definisco una funzione che verrà eseguita quando la richiesta sarà completata con successo.
   //L'oggetto ritornato dall'API viene passato come argomento (object).
-  .then(object => {
+  .then(res => {
   // Controlli se la proprietà success della risposta API è true:
   // Se sì, estrai l'email (object.data.response) e la formatti come un elemento HTML <li>.
   // Passi questa stringa HTML alla funzione printlistEmail per aggiungerla alla lista.
-    if (object.data.success === true){
-      let email = `<li>${object.data.response}</li>`
+    if (res.data.success === true){
+      let email = `<li>${res.data.response}</li>`
       printlistEmail(email)
     }
-    console.log(object)
+    console.log(res)
   })
-  // Gestisco eventuali errori che si verificano durante la richiesta:
+  // Gestisco eventuali errori che si verificano durante la richiesta
   // Mostro un messaggio d'errore all'utente con un alert che contiene i dettagli dell'errore.
   .catch(error => {
     alert(error)
@@ -27,7 +27,7 @@ for(let i = 0; i < 10; i++){
 }
 // Definisco la funzione printlistEmail:
 // Prendo come parametro list, che rappresenta una stringa HTML (<li>...</li>).
-// Aggiungo questa stringa al contenuto HTML dell'elemento listEmail utilizzando innerHTML +=.
+// Aggiungo questa stringa al contenuto HTML dell'elemento listEmail utilizzando innerHTML concatenandola con +=.
 function printlistEmail(list) {
   listEmail.innerHTML += list
 }
